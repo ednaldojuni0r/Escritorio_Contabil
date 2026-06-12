@@ -1,394 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VitaContábil — Contabilidade para Profissionais de Saúde</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
+    html { scroll-behavior: smooth; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #3a3a3a;
+      background: #f4faf7;
+      width: 100%;
+      overflow-x: hidden;
+    }
 
-  .site {
-    font-family: 'Inter', sans-serif;
-    color: #3a3a3a;
-    background: #f4faf7;
-    width: 100%;
-    overflow-x: hidden;
-  }
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: #fff;
+      border-bottom: 1px solid #dbeee5;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #4a9073;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+    }
+    .logo span { color: #b5d6c8; }
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: #5a7a6e;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #4a9073; }
+    .btn-primary {
+      display: inline-block;
+      background: #5b9e7b;
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #4a8a6a; transform: translateY(-1px); }
+    .btn-nav {
+      padding: 0.55rem 1.4rem;
+      font-size: 0.82rem;
+    }
 
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.1rem 2.5rem;
-    background: #fff;
-    border-bottom: 1px solid #dbeee5;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-  .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #4a9073;
-    letter-spacing: 0.01em;
-  }
-  .logo span { color: #b5d6c8; }
-  .nav-links {
-    display: flex;
-    gap: 1.8rem;
-    list-style: none;
-  }
-  .nav-links a {
-    text-decoration: none;
-    font-size: 0.85rem;
-    color: #5a7a6e;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: #4a9073; }
+    /* TICKER */
+    .ticker-bar {
+      background: #e8f5ef;
+      padding: 0.45rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-bottom: 1px solid #d4ece0;
+    }
+    .ticker-track {
+      display: inline-block;
+      animation: ticker 22s linear infinite;
+      font-size: 0.8rem;
+      color: #6aab8e;
+      letter-spacing: 0.04em;
+      font-weight: 400;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .ticker-track span { margin: 0 2.2rem; }
 
-  .ticker-bar {
-    background: #e8f5ef;
-    padding: 0.45rem 0;
-    overflow: hidden;
-    white-space: nowrap;
-    border-bottom: 1px solid #d4ece0;
-  }
-  .ticker-track {
-    display: inline-block;
-    animation: ticker 22s linear infinite;
-    font-size: 0.8rem;
-    color: #6aab8e;
-    letter-spacing: 0.04em;
-    font-weight: 400;
-  }
-  @keyframes ticker {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-  .ticker-track span { margin: 0 2.2rem; }
+    /* HERO */
+    #inicio {
+      padding: 4.5rem 2.5rem 4rem;
+      text-align: center;
+      background: linear-gradient(160deg, #edf8f2 0%, #f9fcfb 60%, #eaf4f0 100%);
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #8ab8a5;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    #inicio h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 600;
+      color: #2e5f4a;
+      line-height: 1.2;
+      max-width: 620px;
+      margin: 0 auto 1.2rem;
+    }
+    #inicio h1 em {
+      font-style: italic;
+      color: #5b9e7b;
+    }
+    #inicio > p {
+      color: #5e7a6e;
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: #5b9e7b;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1.5px solid #a8d4be;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      margin-left: 0.75rem;
+    }
+    .btn-outline:hover { border-color: #5b9e7b; color: #3e7a5c; }
+    .hero-badges {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      background: #fff;
+      border: 1px solid #d4ece0;
+      border-radius: 50px;
+      padding: 0.4rem 1rem;
+      font-size: 0.78rem;
+      color: #5b9e7b;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .badge i { font-size: 14px; }
 
-  .hero {
-    padding: 4.5rem 2.5rem 4rem;
-    text-align: center;
-    background: linear-gradient(160deg, #edf8f2 0%, #f9fcfb 60%, #eaf4f0 100%);
-  }
-  .hero-eyebrow {
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #8ab8a5;
-    margin-bottom: 1rem;
-    font-weight: 500;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.6rem;
-    font-weight: 600;
-    color: #2e5f4a;
-    line-height: 1.2;
-    max-width: 620px;
-    margin: 0 auto 1.2rem;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: #5b9e7b;
-  }
-  .hero p {
-    color: #5e7a6e;
-    font-size: 1rem;
-    max-width: 500px;
-    margin: 0 auto 2rem;
-    line-height: 1.75;
-    font-weight: 300;
-  }
-  .btn-primary {
-    display: inline-block;
-    background: #5b9e7b;
-    color: #fff;
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-    margin-right: 0.75rem;
-  }
-  .btn-primary:hover { background: #4a8a6a; transform: translateY(-1px); }
-  .btn-outline {
-    display: inline-block;
-    background: transparent;
-    color: #5b9e7b;
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border: 1.5px solid #a8d4be;
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .btn-outline:hover { border-color: #5b9e7b; color: #3e7a5c; }
+    /* SECTIONS */
+    section {
+      padding: 3.5rem 2.5rem;
+      scroll-margin-top: 72px;
+    }
+    .section-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #8ab8a5;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      text-align: center;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: #2e5f4a;
+      text-align: center;
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .section-sub {
+      text-align: center;
+      color: #7a9a8a;
+      font-size: 0.9rem;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
 
-  .hero-badges {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    margin-top: 2.5rem;
-    flex-wrap: wrap;
-  }
-  .badge {
-    background: #fff;
-    border: 1px solid #d4ece0;
-    border-radius: 50px;
-    padding: 0.4rem 1rem;
-    font-size: 0.78rem;
-    color: #5b9e7b;
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-  .badge i { font-size: 14px; }
+    /* SERVICES */
+    #servicos { background: #f4faf7; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background: #fff;
+      border: 1px solid #dbeee5;
+      border-radius: 16px;
+      padding: 1.5rem 1.2rem;
+      text-align: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .service-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(91,158,123,0.1); }
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: #e8f5ef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 22px;
+      color: #5b9e7b;
+    }
+    .service-card h3 {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: #2e5f4a;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .service-card p {
+      font-size: 0.8rem;
+      color: #7a9a8a;
+      line-height: 1.6;
+      font-weight: 300;
+    }
 
-  .section { padding: 3.5rem 2.5rem; }
-  .section-label {
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #8ab8a5;
-    font-weight: 500;
-    margin-bottom: 0.6rem;
-    text-align: center;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.75rem;
-    font-weight: 500;
-    color: #2e5f4a;
-    text-align: center;
-    margin-bottom: 0.6rem;
-    line-height: 1.3;
-  }
-  .section-sub {
-    text-align: center;
-    color: #7a9a8a;
-    font-size: 0.9rem;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-  }
+    /* ABOUT */
+    #sobre {
+      background: #fff;
+      border-top: 1px solid #dbeee5;
+      border-bottom: 1px solid #dbeee5;
+    }
+    .about-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.65rem;
+      font-weight: 500;
+      color: #2e5f4a;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    .about-text p {
+      font-size: 0.88rem;
+      color: #5e7a6e;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+    .team-cards { display: flex; flex-direction: column; gap: 0.8rem; }
+    .team-card {
+      background: #f4faf7;
+      border: 1px solid #d4ece0;
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+    .avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #d6eae2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #4a9073;
+      flex-shrink: 0;
+    }
+    .team-info h4 { font-size: 0.88rem; font-weight: 500; color: #2e5f4a; }
+    .team-info p  { font-size: 0.78rem; color: #7a9a8a; font-weight: 300; }
+    .info-box {
+      background: #e8f5ef;
+      border-radius: 12px;
+      padding: 0.9rem 1.2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #5b9e7b;
+      font-weight: 400;
+      line-height: 1.6;
+    }
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-    gap: 1rem;
-    max-width: 860px;
-    margin: 0 auto;
-  }
-  .service-card {
-    background: #fff;
-    border: 1px solid #dbeee5;
-    border-radius: 16px;
-    padding: 1.5rem 1.2rem;
-    text-align: center;
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-  .service-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(91,158,123,0.1); }
-  .service-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    background: #e8f5ef;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1rem;
-    font-size: 22px;
-    color: #5b9e7b;
-  }
-  .service-card h3 {
-    font-size: 0.92rem;
-    font-weight: 500;
-    color: #2e5f4a;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-  }
-  .service-card p {
-    font-size: 0.8rem;
-    color: #7a9a8a;
-    line-height: 1.6;
-    font-weight: 300;
-  }
+    /* WHY */
+    #por-que { background: #f4faf7; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .why-card {
+      border-left: 3px solid #b5d6c8;
+      padding: 1rem 1rem 1rem 1.2rem;
+      background: #fff;
+      border-radius: 0 12px 12px 0;
+    }
+    .why-card i { font-size: 20px; color: #5b9e7b; margin-bottom: 0.5rem; display: block; }
+    .why-card h4 { font-size: 0.88rem; font-weight: 500; color: #2e5f4a; margin-bottom: 0.3rem; }
+    .why-card p  { font-size: 0.78rem; color: #7a9a8a; line-height: 1.6; font-weight: 300; }
 
-  .about-section {
-    background: #fff;
-    border-top: 1px solid #dbeee5;
-    border-bottom: 1px solid #dbeee5;
-  }
-  .about-inner {
-    max-width: 780px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-  }
-  .about-text h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.65rem;
-    font-weight: 500;
-    color: #2e5f4a;
-    margin-bottom: 1rem;
-    line-height: 1.3;
-  }
-  .about-text p {
-    font-size: 0.88rem;
-    color: #5e7a6e;
-    line-height: 1.8;
-    margin-bottom: 1rem;
-    font-weight: 300;
-  }
-  .team-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-  .team-card {
-    background: #f4faf7;
-    border: 1px solid #d4ece0;
-    border-radius: 14px;
-    padding: 1rem 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-  }
-  .avatar {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    background: #d6eae2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #4a9073;
-    flex-shrink: 0;
-  }
-  .team-info h4 { font-size: 0.88rem; font-weight: 500; color: #2e5f4a; }
-  .team-info p { font-size: 0.78rem; color: #7a9a8a; font-weight: 300; }
+    /* CONTACT */
+    #contato {
+      background: #fff;
+      border-top: 1px solid #dbeee5;
+    }
+    .contact-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-top: 2rem;
+      text-align: left;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-group label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #5a7a6e;
+      letter-spacing: 0.02em;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.7rem 0.9rem;
+      border: 1px solid #d4ece0;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #3a3a3a;
+      background: #f9fdfb;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: #5b9e7b; background: #fff; }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .btn-submit {
+      background: #5b9e7b;
+      color: #fff;
+      padding: 0.85rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+      margin-top: 0.4rem;
+    }
+    .btn-submit:hover { background: #4a8a6a; }
+    .contact-alt {
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: #7a9a8a;
+    }
+    .contact-alt a { color: #5b9e7b; text-decoration: none; font-weight: 500; }
+    .contact-alt a:hover { text-decoration: underline; }
 
-  .why-section { background: #f4faf7; }
-  .why-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    max-width: 860px;
-    margin: 0 auto;
-  }
-  .why-card {
-    border-left: 3px solid #b5d6c8;
-    padding: 1rem 1rem 1rem 1.2rem;
-    background: #fff;
-    border-radius: 0 12px 12px 0;
-  }
-  .why-card i { font-size: 20px; color: #5b9e7b; margin-bottom: 0.5rem; display: block; }
-  .why-card h4 { font-size: 0.88rem; font-weight: 500; color: #2e5f4a; margin-bottom: 0.3rem; }
-  .why-card p { font-size: 0.78rem; color: #7a9a8a; line-height: 1.6; font-weight: 300; }
+    /* CTA STRIP */
+    .cta-section {
+      background: #2e5f4a;
+      padding: 3.5rem 2.5rem;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #d4ede3;
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+    .cta-section p {
+      color: #8fcfb0;
+      font-size: 0.9rem;
+      margin-bottom: 1.8rem;
+      font-weight: 300;
+    }
+    .btn-light {
+      background: #e8f5ef;
+      color: #2e5f4a;
+      padding: 0.85rem 2.2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-light:hover { background: #fff; }
 
-  .cta-section {
-    background: #2e5f4a;
-    padding: 3.5rem 2.5rem;
-    text-align: center;
-  }
-  .cta-section h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    color: #d4ede3;
-    margin-bottom: 0.8rem;
-    font-weight: 500;
-  }
-  .cta-section p {
-    color: #8fcfb0;
-    font-size: 0.9rem;
-    margin-bottom: 1.8rem;
-    font-weight: 300;
-  }
-  .btn-light {
-    background: #e8f5ef;
-    color: #2e5f4a;
-    padding: 0.85rem 2.2rem;
-    border-radius: 50px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-    transition: background 0.2s;
-    text-decoration: none;
-  }
-  .btn-light:hover { background: #fff; }
+    /* FOOTER */
+    footer {
+      background: #f0f7f3;
+      border-top: 1px solid #d4ece0;
+      padding: 1.8rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: #5b9e7b;
+      font-weight: 600;
+    }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-size: 0.8rem; color: #7a9a8a; text-decoration: none; }
+    .footer-links a:hover { color: #5b9e7b; }
+    .footer-copy { font-size: 0.75rem; color: #a0bab0; }
 
-  .footer {
-    background: #f0f7f3;
-    border-top: 1px solid #d4ece0;
-    padding: 1.8rem 2.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    color: #5b9e7b;
-    font-weight: 600;
-  }
-  .footer-links {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-  }
-  .footer-links a { font-size: 0.8rem; color: #7a9a8a; text-decoration: none; }
-  .footer-links a:hover { color: #5b9e7b; }
-  .footer-copy { font-size: 0.75rem; color: #a0bab0; }
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { display: none; }
+      #inicio { padding: 3rem 1.5rem; }
+      #inicio h1 { font-size: 1.85rem; }
+      section { padding: 3rem 1.5rem; }
+      .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
 
-  @media (max-width: 600px) {
-    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
-    .hero h1 { font-size: 1.9rem; }
-    .nav-links { display: none; }
-  }
-</style>
-
-<div class="site">
-  <nav class="nav">
-    <div class="logo">Vita<span>Contábil</span></div>
+  <!-- NAV -->
+  <nav>
+    <a href="#inicio" class="logo">Vita<span>Contábil</span></a>
     <ul class="nav-links">
-      <li><a href="#">Serviços</a></li>
-      <li><a href="#">Sobre nós</a></li>
-      <li><a href="#">Por que nós</a></li>
-      <li><a href="#">Contato</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#sobre">Sobre nós</a></li>
+      <li><a href="#por-que">Por que nós</a></li>
+      <li><a href="#contato">Contato</a></li>
     </ul>
-    <button class="btn-primary" style="padding:0.55rem 1.4rem; font-size:0.82rem;" onclick="sendPrompt('Quero saber mais sobre como contratar os serviços do escritório')">Fale conosco</button>
+    <a href="#contato" class="btn-primary btn-nav">Fale conosco</a>
   </nav>
 
-  <div class="ticker-bar">
+  <!-- TICKER -->
+  <div class="ticker-bar" aria-hidden="true">
     <span class="ticker-track">
-      <span>🩺 Médicos</span><span>🦷 Dentistas</span><span>🧠 Psicólogos</span><span>💆 Fisioterapeutas</span><span>💊 Farmacêuticos</span><span>👁️ Oftalmologistas</span><span>🧬 Biomédicos</span><span>🫀 Cardiologistas</span><span>🩻 Radiologistas</span><span>🍃 Nutricionistas</span><span>🩺 Médicos</span><span>🦷 Dentistas</span><span>🧠 Psicólogos</span><span>💆 Fisioterapeutas</span><span>💊 Farmacêuticos</span><span>👁️ Oftalmologistas</span><span>🧬 Biomédicos</span><span>🫀 Cardiologistas</span><span>🩻 Radiologistas</span><span>🍃 Nutricionistas</span>
+      <span>🩺 Médicos</span><span>🦷 Dentistas</span><span>🧠 Psicólogos</span>
+      <span>💆 Fisioterapeutas</span><span>💊 Farmacêuticos</span><span>👁️ Oftalmologistas</span>
+      <span>🧬 Biomédicos</span><span>🫀 Cardiologistas</span><span>🩻 Radiologistas</span>
+      <span>🍃 Nutricionistas</span>
+      <span>🩺 Médicos</span><span>🦷 Dentistas</span><span>🧠 Psicólogos</span>
+      <span>💆 Fisioterapeutas</span><span>💊 Farmacêuticos</span><span>👁️ Oftalmologistas</span>
+      <span>🧬 Biomédicos</span><span>🫀 Cardiologistas</span><span>🩻 Radiologistas</span>
+      <span>🍃 Nutricionistas</span>
     </span>
   </div>
 
-  <section class="hero">
+  <!-- HERO -->
+  <section id="inicio">
     <p class="hero-eyebrow">Contabilidade especializada em saúde</p>
     <h1>Sua clínica merece uma contabilidade <em>que entende você</em></h1>
     <p>Cuidamos de toda a parte fiscal e contábil para que você foque no que faz de melhor — cuidar dos seus pacientes. Atendimento 100% online.</p>
     <div>
-      <button class="btn-primary" onclick="sendPrompt('Quero fazer uma consulta gratuita com o escritório')">Consulta gratuita</button>
-      <button class="btn-outline" onclick="sendPrompt('Quero conhecer os serviços oferecidos')">Conhecer serviços</button>
+      <a href="#contato" class="btn-primary">Consulta gratuita</a>
+      <a href="#servicos" class="btn-outline">Conhecer serviços</a>
     </div>
     <div class="hero-badges">
       <span class="badge"><i class="ti ti-device-laptop" aria-hidden="true"></i> 100% online</span>
@@ -398,10 +507,11 @@
     </div>
   </section>
 
-  <section class="section">
+  <!-- SERVICES -->
+  <section id="servicos">
     <p class="section-label">O que oferecemos</p>
     <h2 class="section-title">Serviços pensados para profissionais de saúde</h2>
-    <p class="section-sub">Do simples nacional ao planejamento tributário — tudo sob medida para a sua área.</p>
+    <p class="section-sub">Do Simples Nacional ao planejamento tributário — tudo sob medida para a sua área.</p>
     <div class="services-grid">
       <div class="service-card">
         <div class="service-icon"><i class="ti ti-file-invoice" aria-hidden="true"></i></div>
@@ -436,7 +546,8 @@
     </div>
   </section>
 
-  <section class="section about-section">
+  <!-- ABOUT -->
+  <section id="sobre">
     <div class="about-inner">
       <div class="about-text">
         <h2>Contadores que falam a língua da saúde</h2>
@@ -459,14 +570,16 @@
             <p>Contador · Análise financeira e sistemas contábeis</p>
           </div>
         </div>
-        <div style="background:#e8f5ef; border-radius:12px; padding:0.9rem 1.2rem; text-align:center;">
-          <p style="font-size:0.8rem; color:#5b9e7b; font-weight:400; line-height:1.6;">💬 Resposta em até 24h úteis<br>📋 Onboarding guiado e sem complicação</p>
+        <div class="info-box">
+          💬 Resposta em até 24h úteis<br>
+          📋 Onboarding guiado e sem complicação
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section why-section">
+  <!-- WHY -->
+  <section id="por-que">
     <p class="section-label">Por que escolher</p>
     <h2 class="section-title">O que nos diferencia</h2>
     <p class="section-sub">Não somos um escritório generalista. Somos especialistas no seu nicho.</p>
@@ -494,20 +607,89 @@
     </div>
   </section>
 
-  <section class="cta-section">
+  <!-- CTA STRIP -->
+  <div class="cta-section">
     <h2>Pronto para organizar a sua contabilidade?</h2>
     <p>Agende uma conversa gratuita e sem compromisso. Vamos entender sua situação e apresentar a melhor solução.</p>
-    <button class="btn-light" onclick="sendPrompt('Quero agendar uma conversa gratuita com o escritório contábil')">Agendar conversa gratuita →</button>
+    <a href="#contato" class="btn-light">Agendar conversa gratuita →</a>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contato">
+    <div class="contact-inner">
+      <p class="section-label">Entre em contato</p>
+      <h2 class="section-title">Vamos conversar?</h2>
+      <p class="section-sub">Preencha o formulário e retornamos em até 24 horas úteis.</p>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" placeholder="Dr. João Silva" required />
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="joao@clinica.com.br" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="whatsapp">WhatsApp</label>
+            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(11) 99999-0000" />
+          </div>
+          <div class="form-group">
+            <label for="profissao">Profissão</label>
+            <select id="profissao" name="profissao">
+              <option value="">Selecione...</option>
+              <option>Médico(a)</option>
+              <option>Dentista</option>
+              <option>Psicólogo(a)</option>
+              <option>Fisioterapeuta</option>
+              <option>Nutricionista</option>
+              <option>Farmacêutico(a)</option>
+              <option>Outro profissional de saúde</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="mensagem">Como podemos ajudar?</label>
+          <textarea id="mensagem" name="mensagem" placeholder="Conte um pouco sobre sua situação atual..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Enviar mensagem →</button>
+      </form>
+      <p class="contact-alt">
+        Prefere falar pelo WhatsApp?
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener">Clique aqui para conversar</a>
+      </p>
+    </div>
   </section>
 
-  <footer class="footer">
+  <!-- FOOTER -->
+  <footer>
     <div class="footer-logo">VitaContábil</div>
     <ul class="footer-links">
-      <li><a href="#">Serviços</a></li>
-      <li><a href="#">Sobre</a></li>
-      <li><a href="#">Contato</a></li>
-      <li><a href="#">Privacidade</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#por-que">Por que nós</a></li>
+      <li><a href="#contato">Contato</a></li>
     </ul>
-    <p class="footer-copy">© 2025 · Atendimento 100% online</p>
+    <p class="footer-copy">© 2025 VitaContábil · Atendimento 100% online</p>
   </footer>
-</div>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-submit');
+      btn.textContent = '✓ Mensagem enviada!';
+      btn.style.background = '#3a7a5a';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Enviar mensagem →';
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
