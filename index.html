@@ -1,0 +1,513 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .site {
+    font-family: 'Inter', sans-serif;
+    color: #3a3a3a;
+    background: #f4faf7;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 2.5rem;
+    background: #fff;
+    border-bottom: 1px solid #dbeee5;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #4a9073;
+    letter-spacing: 0.01em;
+  }
+  .logo span { color: #b5d6c8; }
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: #5a7a6e;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #4a9073; }
+
+  .ticker-bar {
+    background: #e8f5ef;
+    padding: 0.45rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 1px solid #d4ece0;
+  }
+  .ticker-track {
+    display: inline-block;
+    animation: ticker 22s linear infinite;
+    font-size: 0.8rem;
+    color: #6aab8e;
+    letter-spacing: 0.04em;
+    font-weight: 400;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .ticker-track span { margin: 0 2.2rem; }
+
+  .hero {
+    padding: 4.5rem 2.5rem 4rem;
+    text-align: center;
+    background: linear-gradient(160deg, #edf8f2 0%, #f9fcfb 60%, #eaf4f0 100%);
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #8ab8a5;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 600;
+    color: #2e5f4a;
+    line-height: 1.2;
+    max-width: 620px;
+    margin: 0 auto 1.2rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #5b9e7b;
+  }
+  .hero p {
+    color: #5e7a6e;
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: #5b9e7b;
+    color: #fff;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-right: 0.75rem;
+  }
+  .btn-primary:hover { background: #4a8a6a; transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-block;
+    background: transparent;
+    color: #5b9e7b;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1.5px solid #a8d4be;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: #5b9e7b; color: #3e7a5c; }
+
+  .hero-badges {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .badge {
+    background: #fff;
+    border: 1px solid #d4ece0;
+    border-radius: 50px;
+    padding: 0.4rem 1rem;
+    font-size: 0.78rem;
+    color: #5b9e7b;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .badge i { font-size: 14px; }
+
+  .section { padding: 3.5rem 2.5rem; }
+  .section-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #8ab8a5;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    text-align: center;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: #2e5f4a;
+    text-align: center;
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+  .section-sub {
+    text-align: center;
+    color: #7a9a8a;
+    font-size: 0.9rem;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1rem;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .service-card {
+    background: #fff;
+    border: 1px solid #dbeee5;
+    border-radius: 16px;
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .service-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(91,158,123,0.1); }
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: #e8f5ef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 22px;
+    color: #5b9e7b;
+  }
+  .service-card h3 {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #2e5f4a;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .service-card p {
+    font-size: 0.8rem;
+    color: #7a9a8a;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .about-section {
+    background: #fff;
+    border-top: 1px solid #dbeee5;
+    border-bottom: 1px solid #dbeee5;
+  }
+  .about-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.65rem;
+    font-weight: 500;
+    color: #2e5f4a;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .about-text p {
+    font-size: 0.88rem;
+    color: #5e7a6e;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+  .team-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .team-card {
+    background: #f4faf7;
+    border: 1px solid #d4ece0;
+    border-radius: 14px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #d6eae2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #4a9073;
+    flex-shrink: 0;
+  }
+  .team-info h4 { font-size: 0.88rem; font-weight: 500; color: #2e5f4a; }
+  .team-info p { font-size: 0.78rem; color: #7a9a8a; font-weight: 300; }
+
+  .why-section { background: #f4faf7; }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .why-card {
+    border-left: 3px solid #b5d6c8;
+    padding: 1rem 1rem 1rem 1.2rem;
+    background: #fff;
+    border-radius: 0 12px 12px 0;
+  }
+  .why-card i { font-size: 20px; color: #5b9e7b; margin-bottom: 0.5rem; display: block; }
+  .why-card h4 { font-size: 0.88rem; font-weight: 500; color: #2e5f4a; margin-bottom: 0.3rem; }
+  .why-card p { font-size: 0.78rem; color: #7a9a8a; line-height: 1.6; font-weight: 300; }
+
+  .cta-section {
+    background: #2e5f4a;
+    padding: 3.5rem 2.5rem;
+    text-align: center;
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #d4ede3;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+  .cta-section p {
+    color: #8fcfb0;
+    font-size: 0.9rem;
+    margin-bottom: 1.8rem;
+    font-weight: 300;
+  }
+  .btn-light {
+    background: #e8f5ef;
+    color: #2e5f4a;
+    padding: 0.85rem 2.2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+  .btn-light:hover { background: #fff; }
+
+  .footer {
+    background: #f0f7f3;
+    border-top: 1px solid #d4ece0;
+    padding: 1.8rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: #5b9e7b;
+    font-weight: 600;
+  }
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .footer-links a { font-size: 0.8rem; color: #7a9a8a; text-decoration: none; }
+  .footer-links a:hover { color: #5b9e7b; }
+  .footer-copy { font-size: 0.75rem; color: #a0bab0; }
+
+  @media (max-width: 600px) {
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero h1 { font-size: 1.9rem; }
+    .nav-links { display: none; }
+  }
+</style>
+
+<div class="site">
+  <nav class="nav">
+    <div class="logo">Vita<span>Contábil</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Serviços</a></li>
+      <li><a href="#">Sobre nós</a></li>
+      <li><a href="#">Por que nós</a></li>
+      <li><a href="#">Contato</a></li>
+    </ul>
+    <button class="btn-primary" style="padding:0.55rem 1.4rem; font-size:0.82rem;" onclick="sendPrompt('Quero saber mais sobre como contratar os serviços do escritório')">Fale conosco</button>
+  </nav>
+
+  <div class="ticker-bar">
+    <span class="ticker-track">
+      <span>🩺 Médicos</span><span>🦷 Dentistas</span><span>🧠 Psicólogos</span><span>💆 Fisioterapeutas</span><span>💊 Farmacêuticos</span><span>👁️ Oftalmologistas</span><span>🧬 Biomédicos</span><span>🫀 Cardiologistas</span><span>🩻 Radiologistas</span><span>🍃 Nutricionistas</span><span>🩺 Médicos</span><span>🦷 Dentistas</span><span>🧠 Psicólogos</span><span>💆 Fisioterapeutas</span><span>💊 Farmacêuticos</span><span>👁️ Oftalmologistas</span><span>🧬 Biomédicos</span><span>🫀 Cardiologistas</span><span>🩻 Radiologistas</span><span>🍃 Nutricionistas</span>
+    </span>
+  </div>
+
+  <section class="hero">
+    <p class="hero-eyebrow">Contabilidade especializada em saúde</p>
+    <h1>Sua clínica merece uma contabilidade <em>que entende você</em></h1>
+    <p>Cuidamos de toda a parte fiscal e contábil para que você foque no que faz de melhor — cuidar dos seus pacientes. Atendimento 100% online.</p>
+    <div>
+      <button class="btn-primary" onclick="sendPrompt('Quero fazer uma consulta gratuita com o escritório')">Consulta gratuita</button>
+      <button class="btn-outline" onclick="sendPrompt('Quero conhecer os serviços oferecidos')">Conhecer serviços</button>
+    </div>
+    <div class="hero-badges">
+      <span class="badge"><i class="ti ti-device-laptop" aria-hidden="true"></i> 100% online</span>
+      <span class="badge"><i class="ti ti-stethoscope" aria-hidden="true"></i> Nicho saúde</span>
+      <span class="badge"><i class="ti ti-file-certificate" aria-hidden="true"></i> Simples Nacional</span>
+      <span class="badge"><i class="ti ti-message-circle" aria-hidden="true"></i> Suporte ágil</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-label">O que oferecemos</p>
+    <h2 class="section-title">Serviços pensados para profissionais de saúde</h2>
+    <p class="section-sub">Do simples nacional ao planejamento tributário — tudo sob medida para a sua área.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="ti ti-file-invoice" aria-hidden="true"></i></div>
+        <h3>Abertura de empresa</h3>
+        <p>Abrimos seu CNPJ com o enquadramento ideal: sociedade simples, EIRELI ou MEI quando aplicável.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="ti ti-calculator" aria-hidden="true"></i></div>
+        <h3>Simples Nacional</h3>
+        <p>Apuração mensal com atenção ao Fator R para garantir o menor imposto possível no Anexo III.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="ti ti-cash" aria-hidden="true"></i></div>
+        <h3>Folha de pagamento</h3>
+        <p>Admissão, férias, rescisões e encargos trabalhistas entregues dentro do prazo.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="ti ti-trending-up" aria-hidden="true"></i></div>
+        <h3>Planejamento tributário</h3>
+        <p>Análise do melhor regime fiscal e estratégias legais para reduzir a carga tributária.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="ti ti-report-analytics" aria-hidden="true"></i></div>
+        <h3>Relatórios gerenciais</h3>
+        <p>DRE, balanço e fluxo de caixa em linguagem simples para você entender o financeiro.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="ti ti-headset" aria-hidden="true"></i></div>
+        <h3>Consultoria contínua</h3>
+        <p>Canal direto para dúvidas tributárias e decisões do dia a dia do seu consultório.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about-section">
+    <div class="about-inner">
+      <div class="about-text">
+        <h2>Contadores que falam a língua da saúde</h2>
+        <p>Somos Luis Henrique e Ednaldo — dois profissionais que uniram expertise contábil e tecnologia para criar um escritório focado exclusivamente no setor de saúde.</p>
+        <p>Entendemos as particularidades do Simples Nacional para profissionais liberais, o cálculo correto do Fator R, a tributação de sociedades médicas e as obrigações acessórias do setor.</p>
+        <p>Nosso atendimento é 100% online: sem deslocamento, sem burocracia, com agilidade e transparência em cada etapa.</p>
+      </div>
+      <div class="team-cards">
+        <div class="team-card">
+          <div class="avatar">LH</div>
+          <div class="team-info">
+            <h4>Luis Henrique</h4>
+            <p>Contador · Especialista em tributação PJ saúde</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="avatar">EN</div>
+          <div class="team-info">
+            <h4>Ednaldo</h4>
+            <p>Contador · Análise financeira e sistemas contábeis</p>
+          </div>
+        </div>
+        <div style="background:#e8f5ef; border-radius:12px; padding:0.9rem 1.2rem; text-align:center;">
+          <p style="font-size:0.8rem; color:#5b9e7b; font-weight:400; line-height:1.6;">💬 Resposta em até 24h úteis<br>📋 Onboarding guiado e sem complicação</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section why-section">
+    <p class="section-label">Por que escolher</p>
+    <h2 class="section-title">O que nos diferencia</h2>
+    <p class="section-sub">Não somos um escritório generalista. Somos especialistas no seu nicho.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <i class="ti ti-target" aria-hidden="true"></i>
+        <h4>Especialização no setor</h4>
+        <p>Conhecemos profundamente a tributação e as obrigações dos profissionais de saúde.</p>
+      </div>
+      <div class="why-card">
+        <i class="ti ti-device-laptop" aria-hidden="true"></i>
+        <h4>Totalmente digital</h4>
+        <p>Documentos, relatórios e comunicação via plataformas modernas. Nada de papel.</p>
+      </div>
+      <div class="why-card">
+        <i class="ti ti-currency-dollar" aria-hidden="true"></i>
+        <h4>Economia de impostos</h4>
+        <p>Apuração criteriosa do Fator R e escolha de regime para minimizar sua carga fiscal.</p>
+      </div>
+      <div class="why-card">
+        <i class="ti ti-heart-handshake" aria-hidden="true"></i>
+        <h4>Relacionamento próximo</h4>
+        <p>Você tem acesso direto aos sócios — não a um atendente sem conhecimento do seu caso.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>Pronto para organizar a sua contabilidade?</h2>
+    <p>Agende uma conversa gratuita e sem compromisso. Vamos entender sua situação e apresentar a melhor solução.</p>
+    <button class="btn-light" onclick="sendPrompt('Quero agendar uma conversa gratuita com o escritório contábil')">Agendar conversa gratuita →</button>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-logo">VitaContábil</div>
+    <ul class="footer-links">
+      <li><a href="#">Serviços</a></li>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Contato</a></li>
+      <li><a href="#">Privacidade</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 · Atendimento 100% online</p>
+  </footer>
+</div>
